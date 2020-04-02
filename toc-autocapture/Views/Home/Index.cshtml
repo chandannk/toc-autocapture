@@ -1,0 +1,63 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    <h4 class="col-sm-4">
+        
+            Select Document Type
+        
+    </h4>
+    <label class="radio-inline col-sm-2">
+        <input type="radio" name="docType" id="Radios1" value="CHL1">
+        Old Chile ID
+    </label>
+    <label class="radio-inline col-sm-2">
+        <input type="radio" name="docType" id="Radios2" value="CHL2" checked>
+        New Chile ID
+    </label>
+
+</div>
+@*<div class="row">
+    <h4 class="col-sm-4">
+        Document Side
+    </h4>
+    <label class="radio-inline col-sm-2">
+        <input type="radio" name="docSide" id="Radios2" value="auto" checked>
+        Auto
+    </label>
+    <label class="radio-inline col-sm-2">
+        <input type="radio" name="docSide" id="Radios1" value="front">
+        Front
+    </label>
+    <label class="radio-inline col-sm-2">
+        <input type="radio" name="docSide" id="Radios2" value="back">
+        Back
+    </label>
+
+</div>*@
+<div class="row col-sm-4">
+    <button id="startbutton" class="btn btn-lg btn-primary">Start</button>
+</div>
+<h5 class="card-title text-center" id="front" hidden="hidden">Take a picture of the front side of the ID Card</h5>
+<h5 class="card-title text-center" id="back" hidden="hidden">Take a picture of the back side of the ID Card</h5>
+<div class="text-center" id="autocapture">
+    <div id="container"></div>
+</div>
+<div class="text-center">
+    <h5 class="card-title" id="textByLiveness" hidden="hidden">Take a selfie</h5>
+    <div id="liveness"></div>
+</div>
+<div class="text-center">
+    <div id="result"></div>
+</div>
+
+@section Scripts{
+
+    <script src="~/js/toc-autoCapture.js"></script>
+    <script src="https://sandbox-autocapture-web.toc.ai/autocapture.js"></script>
+    <script src="https://liveness-web.toc.ai/js/liveness.js"></script>
+    <script src="https://cdn.webrtc-experiment.com/DetectRTC.js"></script>
+
+
+}
