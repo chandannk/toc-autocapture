@@ -37,20 +37,36 @@ namespace toc_autocapture.Controllers
 
         public TocResponse SessionId(bool autoCapture)
         {
-            _logger.LogWarning("starting session id");
-            var apiKey = "d1e15e6eeab44925b1cfcde84fe763e1";
-            var url = "https://sandbox-api.7oc.cl/session-manager/v1/session-id";
-            var helper = new TocHelper().GetSessionID(apiKey, url,autoCapture);
-            return helper.Result;
+            try
+            {
+                var apiKey = "d1e15e6eeab44925b1cfcde84fe763e1";
+                var url = "https://sandbox-api.7oc.cl/session-manager/v1/session-id";
+                var helper = new TocHelper().GetSessionID(apiKey, url, autoCapture);
+                return helper.Result;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex,"Error getting session id");
+                return new TocResponse();
+            }
         }
 
         [HttpPost]
         public string Validate([FromBody]DocumentValidationModel validationData) {
-            var apiKey= "d1e15e6eeab44925b1cfcde84fe763e1";
-            var url = "https://sandbox-api.7oc.cl/v2/face-and-document";
+            try
+            {
+                var apiKey = "d1e15e6eeab44925b1cfcde84fe763e1";
+                var url = "https://sandbox-api.7oc.cl/v2/face-and-document";
 
-            var result = new TocHelper().ValidateFaceAndDocuemnt(apiKey, url, validationData);
-            return result.Result;
+                var result = new TocHelper().ValidateFaceAndDocuemnt(apiKey, url, validationData);
+                return result.Result;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error validating the data");
+                return string.Empty;
+            }
+
         }
     }
 }

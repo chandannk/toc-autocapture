@@ -117,8 +117,7 @@ function autoCaptureBack(sessionId) {
         },
         failure: function (error) {
             console.log("Auto Capture Front Error - " + error);
-            
-            alert(error);
+           
             if (error == "402") {
                 id_back = "testingback";
                 startLiveness();
